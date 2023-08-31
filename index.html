@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <script src="app.js" defer></script>
+    <title>Constraint Validation</title>
+</head>
+<body>
+    <form action="" novalidate autocomplete="off">
+        <h3>Form</h3>
+        <ul>
+            <li>
+                <label for="email">Email:</label>
+                <input type="email" name="email" required>
+                <p class="msg"></p>
+            </li>
+            <li>
+                <label for="country">Country:</label>
+                <input type="country" name="country" required>
+                <p class="msg"></p>
+            </li>
+            <li>
+                <label for="zip">Zip Code:</label>
+                <input type="number" name="zip" required>
+                <p class="msg"></p>
+            </li>
+            <li>
+                <label for="password">Password</label>
+                <input type="password" name="password" required>
+                <p class="msg"></p>
+            </li>
+            <li>
+                <label for="password-confirm">Email</label>
+                <input type="password" name="password-confirm" required>
+                <p class="msg"></p>
+            </li>
+        </ul>
+    </form>
+    
+</body>
+</html>
