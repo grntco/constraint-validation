@@ -33,6 +33,7 @@ body {
 }
 
 h3 {
+    width: 100%;
     font-size: 1.4rem;
     padding-bottom: 8px;
     text-align: center;
@@ -60,7 +61,6 @@ form ul {
 form ul li {
     display: flex;
     flex-direction: column;
-    /* width: 100%; */
     gap: 2px;
 }
 
@@ -91,10 +91,19 @@ select {
     font-family: var(--font-family);
 }
 
+input:valid, select:valid {
+    border-color: var(--valid-color);
+}
+
+input:invalid, select:invalid{
+    border-color: var(--invalid-color);
+}
 
 .msg {
+    height: 1.2rem;
     font-size: 0.8rem;
     align-self: end;
+    /* flex-grow: 1; */
 }
 
 .msg.valid {
@@ -105,7 +114,20 @@ select {
     color: var(--invalid-color);
 }
 
+.additional-errors-container {
+    gap: 2px;
+}
+
+.additional-errors-container .msg {
+    display: none;
+}
+
+.additional-errors-container .msg.invalid {
+    display: block;
+}
+
 button {
+    width: 100%;
     border: none;
     outline: none;
     padding: 12px 16px;

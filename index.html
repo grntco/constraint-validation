@@ -281,13 +281,19 @@
             </li>
             <li>
                 <label for="zip">Zip/Postal Code:</label>
-                <input type="text" name="zip" pattern="^\d{5}(-\d{4})?$" required>
+                <input type="text" name="zip" clicked="false" pattern="^\d{5}(-\d{4})?$" required>
                 <p class="msg"></p>
             </li>
             <li>
                 <label for="password">Password:</label>
-                <input type="password" name="password" required>
+                <input type="password" name="password" minlength="8" maxlength="20" required>
                 <p class="msg"></p>
+                <ul class="additional-errors-container">
+                    <li class="msg" id="capital-error">At least one capital letter</li>
+                    <li class="msg" id="number-error">At least one number</li>
+                    <li class="msg" id="symbol-error">At least one symbol (!@#$%^&*.?<>/\)</li>
+                    <li class="msg" id="length-error">8 to 20 characters</li>
+                </ul>
             </li>
             <li>
                 <label for="confirm-password">Confirm Password:</label>
