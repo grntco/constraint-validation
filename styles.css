@@ -5,14 +5,15 @@
 }
 
 :root {
+    --font-family: 'Noto Sans', sans-serif;
     --primary-bg-color: #e2e8f0;
     --secondary-bg-color: #f8fafc;
     --primary-txt-color: #020617;
     --secondary-txt-color: #1e293b;
     --primary-border-color: #94a3b8;
     --focus-border-color: #334155;
-    --error-color: #ef4444;
-    --success-color: #22c55e;
+    --invalid-color: #ef4444;
+    --valid-color: #22c55e;
     --btn-bg-disabled-color: #e2e8f0;
     --btn-txt-disabled-color: #64748b;
     --btn-bg-enabled-color: #bae6fd;
@@ -27,8 +28,16 @@ body {
     height: 100vh;
     background-color: var(--primary-bg-color);
     color: var(--primary-txt-color);
-    font-family: 'Noto Sans', sans-serif;
+    font-family: var(--font-family);
     font-size: 16px;
+}
+
+h3 {
+    font-size: 1.4rem;
+    padding-bottom: 8px;
+    width: 60%;
+    text-align: center;
+    border-bottom: 2px solid var(--primary-bg-color);
 }
 
 form {
@@ -61,14 +70,30 @@ form ul li {
 label {
     font-size: 0.8rem;
     color: var(--secondary-txt-color);
+    position: relative;
 }
 
-input {
+label::before {
+    content: "*";
+    color: var(--invalid-color);
+    position: absolute;
+    top: -2px;
+    left: -8px;
+}
+
+input, select {
     padding: 4px;
     border-radius: 4px;
     outline: none;
+    height: 2rem;
+    color: var(--secondary-txt-color);
     border: 2px solid var(--primary-border-color);
 }
+
+select {
+    font-family: var(--font-family);
+}
+
 
 .msg {
     font-size: 0.8rem;
@@ -76,11 +101,11 @@ input {
 }
 
 .msg.valid {
-    color: var(--success-color);
+    color: var(--valid-color);
 }
 
 .msg.invalid {
-    color: var(--error-color);
+    color: var(--invalid-color);
 }
 
 button {
@@ -89,7 +114,7 @@ button {
     padding: 12px 16px;
     border-radius: 8px;
     width: 60%;
-    font-family: 'Noto Sans', sans-serif;
+    font-family: var(--font-family);
     font-size: 1rem;
     font-weight: 600;
 }
