@@ -23,7 +23,7 @@ function showErrorMsg(input, msgsContent) {
 // INPUT CHECKS
 function checkEmail() {
     const emailMsgs = {
-        error: '❗️Provide a valid email (ex. johndoe@example.com).',
+        error: '❗️Provide a valid email (ex. johnsmith@example.com).',
         success: '✅ Looks good!'
     }
 
@@ -61,6 +61,14 @@ function checkZip() {
 }
 
 // EVENTS
-email.addEventListener('blur', checkEmail);
+email.addEventListener('blur', () => {
+    checkEmail();
+    email.clicked = true;
+});
+
+email.addEventListener('input', () => {
+    if (email.clicked) checkEmail();
+});
+
 country.addEventListener('blur', checkCountry);
 zip.addEventListener('blur', checkZip);
