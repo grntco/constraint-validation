@@ -1,0 +1,110 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+:root {
+    --primary-bg-color: #e2e8f0;
+    --secondary-bg-color: #f8fafc;
+    --primary-txt-color: #020617;
+    --secondary-txt-color: #1e293b;
+    --primary-border-color: #94a3b8;
+    --focus-border-color: #334155;
+    --error-color: #ef4444;
+    --success-color: #22c55e;
+    --btn-bg-disabled-color: #e2e8f0;
+    --btn-txt-disabled-color: #64748b;
+    --btn-bg-enabled-color: #bae6fd;
+    --btn-bg-enabled-color-hover: #7dd3fc;
+    --box-shadow: 4px 8px 10px 0px rgba(1, 1, 1, 0.1)
+}
+
+body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    background-color: var(--primary-bg-color);
+    color: var(--primary-txt-color);
+    font-family: 'Noto Sans', sans-serif;
+    font-size: 16px;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    width: 40%;
+    padding: 48px;
+    border-radius: 16px;
+    background-color: var(--secondary-bg-color);
+    box-shadow: var(--box-shadow);
+}
+
+form ul {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    list-style: none;
+    width: 60%;
+}
+
+form ul li {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    gap: 2px;
+}
+
+label {
+    font-size: 0.8rem;
+    color: var(--secondary-txt-color);
+}
+
+input {
+    padding: 4px;
+    border-radius: 4px;
+    outline: none;
+    border: 2px solid var(--primary-border-color);
+}
+
+.msg {
+    font-size: 0.8rem;
+    align-self: end;
+}
+
+.msg.valid {
+    color: var(--success-color);
+}
+
+.msg.invalid {
+    color: var(--error-color);
+}
+
+button {
+    border: none;
+    outline: none;
+    padding: 12px 16px;
+    border-radius: 8px;
+    width: 60%;
+    font-family: 'Noto Sans', sans-serif;
+    font-size: 1rem;
+    font-weight: 600;
+}
+
+button:disabled {
+    background-color: var(--btn-bg-disabled-color);
+    color: var(--btn-txt-disabled-color);
+}
+
+button:enabled {
+    background-color: var(--btn-bg-enabled-color);
+    color: var(--secondary-txt-color);
+}
+
+button:enabled:hover {
+    background-color: var(--btn-bg-enabled-color-hover);
+    cursor: pointer;
+}
