@@ -1,4 +1,4 @@
-// GLOBAL VARIABLS
+// GLOBAL VARIABLES
 const form = document.querySelector('form');
 const email = document.querySelector('input[name="email"]');
 const country = document.querySelector('select[name="country"]');
@@ -6,9 +6,8 @@ const zip = document.querySelector('input[name="zip"]');
 const password = document.querySelector('input[name="password"]');
 const passwordConfirm = document.querySelector('input[name="confirm-password"]');
 const allInputs = [email, country, zip, password, passwordConfirm];
-const submitBtn = document.querySelector('button[type="submit"]');
 
-// allInputs.map(input => input.style.borderColor = 'var(--primary-border-color)')
+// FUNCTIONS
 
 // This function makes the form inputs only invalid after a user leaves the input.
 // This fixes the inputs defaulting to invalid on page load, which gives them a red border due to the :invalid class.
@@ -16,7 +15,6 @@ function setRequired(input) {
     input.setAttribute('required', true);
 }
 
-// SHOW MESSAGES
 function showSuccessMsg(input, msgsContent) {
     const msg = input.nextElementSibling;
 
@@ -33,7 +31,6 @@ function showErrorMsg(input, msgsContent) {
     msg.classList.add('invalid');
 }
 
-// INPUT CHECKS
 function checkEmail() {
     const emailMsgs = {
         error: 'Provide a valid email (ex. johnsmith@example.com).',
@@ -77,19 +74,15 @@ function checkPassword() {
     const passwordMsgs = {
         error: 'Please include the following:',
         success: `That's a strong password.`
-    }
-
-    // Regexes
+    };
     const capitalRegex = /[A-Z]/;
     const numRegex = /[0-9]/;
     const symbolRegex = /[!@#$%^&*.?]/;
-
-    // Additional error messages
-    const capitalError = document.getElementById('capital-error')
-    const numberError = document.getElementById('number-error')
-    const symbolError = document.getElementById('symbol-error')
-    const lengthError = document.getElementById('length-error')
-    const additionalErrors = [ ...document.querySelector('.additional-errors-container').children]
+    const capitalError = document.getElementById('capital-error');
+    const numberError = document.getElementById('number-error');
+    const symbolError = document.getElementById('symbol-error');
+    const lengthError = document.getElementById('length-error');
+    const additionalErrors = [ ...document.querySelector('.additional-errors-container').children];
 
     if (!password.validity.valid) {
         if (password.validity.valueMissing && !password.clicked) { //Not the best code. Even though the password is clicked, this is false b/c password.clicked hasn't been set to true yet on blur
@@ -117,18 +110,16 @@ function checkPassword() {
                 lengthError.classList.remove('invalid');
             }
         }
-        showErrorMsg(password, passwordMsgs)
+        showErrorMsg(password, passwordMsgs);
     } else {
         additionalErrors.map(error => error.classList.remove('invalid'));
         showSuccessMsg(password, passwordMsgs);
     }
 }
-// Something weird happened with this. Didn't check a first capital letter when I deleted everything...
-
 
 function checkPasswordConfirm() {
     const passwordConfirmMsgs = {
-        error: `Hmm`,
+        error: '',
         success: 'Thank you!'
     }
 
@@ -175,8 +166,6 @@ country.addEventListener('input', () => {
     if (country.clicked) checkCountry();
 })
 
-// MAY NEED TO ADD CLICKED FOR COUNTRY
-
 zip.addEventListener('blur', () => { 
     setRequired(zip)
     checkZip();
@@ -207,11 +196,6 @@ passwordConfirm.addEventListener('input', () => {
     if (passwordConfirm.clicked) checkPasswordConfirm();
 });
 
-
-// submitBtn.addEventListener('submit', () => {
-
-// });
-
 form.addEventListener('submit', (event) => {
     const fixErrorsMsg = document.querySelector('.fix-errors-msg');
     const thumbsUp = document.querySelector('.thumbs-up');
@@ -219,7 +203,7 @@ form.addEventListener('submit', (event) => {
     event.preventDefault();
     allInputs.forEach(input => {
         setRequired(input);
-        if (input.hasAttribute('clicked')) input.clicked = true;
+        input.clicked = true;
     });
 
     if (!form.checkValidity()) {
@@ -229,4 +213,4 @@ form.addEventListener('submit', (event) => {
         fixErrorsMsg.classList.remove('active');
         thumbsUp.classList.add('active');
     }
-})
+});
