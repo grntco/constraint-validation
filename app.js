@@ -1,10 +1,12 @@
 // GLOBAL VARIABLS
+const form = document.querySelector('form');
 const email = document.querySelector('input[name="email"]');
 const country = document.querySelector('select[name="country"]');
 const zip = document.querySelector('input[name="zip"]');
 const password = document.querySelector('input[name="password"]');
 const passwordConfirm = document.querySelector('input[name="confirm-password"]');
 const allInputs = [email, country, zip, password, passwordConfirm];
+const submitBtn = document.querySelector('button[type="submit"]');
 
 // allInputs.map(input => input.style.borderColor = 'var(--primary-border-color)')
 
@@ -144,8 +146,13 @@ function checkPasswordConfirm() {
     }
 }
 
-
-
+function checkAllInputs() {
+    checkEmail();
+    checkCountry();
+    checkZip();
+    checkPassword();
+    checkPasswordConfirm()
+}
 
 // EVENTS
 email.addEventListener('blur', () => {
@@ -161,7 +168,12 @@ email.addEventListener('input', () => {
 country.addEventListener('blur', () => {
     setRequired(country);
     checkCountry();
+    country.clicked = true;
 });
+
+country.addEventListener('input', () => {
+    if (country.clicked) checkCountry();
+})
 
 // MAY NEED TO ADD CLICKED FOR COUNTRY
 
@@ -195,3 +207,26 @@ passwordConfirm.addEventListener('input', () => {
     if (passwordConfirm.clicked) checkPasswordConfirm();
 });
 
+
+// submitBtn.addEventListener('submit', () => {
+
+// });
+
+form.addEventListener('submit', (event) => {
+    const fixErrorsMsg = document.querySelector('.fix-errors-msg');
+    const thumbsUp = document.querySelector('.thumbs-up');
+    
+    event.preventDefault();
+    allInputs.forEach(input => {
+        setRequired(input);
+        if (input.hasAttribute('clicked')) input.clicked = true;
+    });
+
+    if (!form.checkValidity()) {
+        fixErrorsMsg.classList.add('active');
+        checkAllInputs();
+    } else {
+        fixErrorsMsg.classList.remove('active');
+        thumbsUp.classList.add('active');
+    }
+})

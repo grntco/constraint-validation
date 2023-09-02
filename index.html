@@ -11,8 +11,9 @@
     <title>Constraint Validation</title>
 </head>
 <body>
+    <div class="thumbs-up">👍 Nice work!</div>
     <form autocomplete="off" novalidate>
-        <p class="msg invalid">❗️Please fix the fields below.</p>
+        <p class="msg fix-errors-msg invalid">❗️Please fix the errors below.</p>
         <h3>Sign Up</h3>
         <ul>
             <li>
@@ -22,7 +23,7 @@
             </li>
             <li>
                 <label for="country">Country:</label>
-                <select name="country">
+                <select name="country" clicked="false">
                     <option selected disabled value="">Select Country</option>
                     <option value="AF">Afghanistan</option>
                     <option value="AX">Aland Islands</option>
@@ -303,6 +304,5 @@
         </ul>
         <button type="submit">Create Account</button>
     </form>
-    
 </body>
 </html>

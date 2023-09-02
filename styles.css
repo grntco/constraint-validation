@@ -14,8 +14,6 @@
     --focus-border-color: #334155;
     --invalid-color: #ef4444;
     --valid-color: #22c55e;
-    --btn-bg-disabled-color: #e2e8f0;
-    --btn-txt-disabled-color: #64748b;
     --btn-bg-enabled-color: #bae6fd;
     --btn-bg-enabled-color-hover: #7dd3fc;
     --box-shadow: 4px 8px 10px 0px rgba(1, 1, 1, 0.1)
@@ -30,6 +28,7 @@ body {
     color: var(--primary-txt-color);
     font-family: var(--font-family);
     font-size: 16px;
+    position: relative;
 }
 
 h3 {
@@ -38,6 +37,26 @@ h3 {
     padding-bottom: 8px;
     text-align: center;
     border-bottom: 2px solid var(--primary-bg-color);
+}
+
+.thumbs-up {
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    z-index: -3;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 4rem;
+    font-weight: 600;
+    color: var(--secondary-txt-color);
+    background-color: var(--primary-bg-color);
+    transition: opacity 0.3s ease-in;
+}
+
+.thumbs-up.active {
+    opacity: 1;
+    z-index: 999;
 }
 
 form {
@@ -103,7 +122,6 @@ input:required:invalid, select:required:invalid {
     height: 1.2rem;
     font-size: 0.8rem;
     align-self: end;
-    /* flex-grow: 1; */
 }
 
 .msg.valid {
@@ -112,6 +130,16 @@ input:required:invalid, select:required:invalid {
 
 .msg.invalid {
     color: var(--invalid-color);
+}
+
+.fix-errors-msg {
+    align-self: center;
+    font-size: 1rem;
+    display: none;
+}
+
+.fix-errors-msg.active {
+    display: block;
 }
 
 .additional-errors-container {
@@ -135,19 +163,12 @@ button {
     font-family: var(--font-family);
     font-size: 1rem;
     font-weight: 600;
-}
-
-button:disabled {
-    background-color: var(--btn-bg-disabled-color);
-    color: var(--btn-txt-disabled-color);
-}
-
-button:enabled {
     background-color: var(--btn-bg-enabled-color);
     color: var(--secondary-txt-color);
 }
 
-button:enabled:hover {
+button:hover {
     background-color: var(--btn-bg-enabled-color-hover);
     cursor: pointer;
 }
+
