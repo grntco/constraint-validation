@@ -124,6 +124,26 @@ function checkPassword() {
 // Something weird happened with this. Didn't check a first capital letter when I deleted everything...
 
 
+function checkPasswordConfirm() {
+    const passwordConfirmMsgs = {
+        error: `Hmm`,
+        success: 'Thank you!'
+    }
+
+    const passwordEscaped = password.value.replace(/[.*+?^$]/g, '\\$&');
+    passwordConfirm.setAttribute('pattern', passwordEscaped)
+
+    if (passwordConfirm.validity.valueMissing) {
+        passwordConfirmMsgs.error = 'Please confirm your password.';
+        showErrorMsg(passwordConfirm, passwordConfirmMsgs);
+    } else if (passwordConfirm.validity.patternMismatch) {
+        passwordConfirmMsgs.error = `The passwords don't match.`;
+        showErrorMsg(passwordConfirm, passwordConfirmMsgs);
+    } else {
+        showSuccessMsg(passwordConfirm, passwordConfirmMsgs);
+    }
+}
+
 
 
 
@@ -163,5 +183,15 @@ password.addEventListener('blur', () => {
 
 password.addEventListener('input', () => {
     if (password.clicked) checkPassword();
+});
+
+passwordConfirm.addEventListener('blur', () => {
+    setRequired(passwordConfirm);
+    checkPasswordConfirm();
+    passwordConfirm.clicked = true;
+})
+
+passwordConfirm.addEventListener('input', () => {
+    if (passwordConfirm.clicked) checkPasswordConfirm();
 });
 
