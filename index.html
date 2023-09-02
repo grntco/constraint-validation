@@ -17,12 +17,12 @@
         <ul>
             <li>
                 <label for="email">Email:</label>
-                <input type="email" name="email" clicked="false" pattern="^[a-zA-Z0-9]+@[a-zA-Z0-9]+\.[a-zA-Z]{2,4}$" required>
+                <input type="email" name="email" clicked="false" pattern="^[a-zA-Z0-9]+@[a-zA-Z0-9]+\.[a-zA-Z]{2,4}$">
                 <p class="msg"></p>
             </li>
             <li>
                 <label for="country">Country:</label>
-                <select name="country" required>
+                <select name="country">
                     <option selected disabled value="">Select Country</option>
                     <option value="AF">Afghanistan</option>
                     <option value="AX">Aland Islands</option>
@@ -281,23 +281,23 @@
             </li>
             <li>
                 <label for="zip">Zip/Postal Code:</label>
-                <input type="text" name="zip" clicked="false" pattern="^\d{5}(-\d{4})?$" required>
+                <input type="text" name="zip" clicked="false" pattern="^\d{5}(-\d{4})?$">
                 <p class="msg"></p>
             </li>
             <li>
                 <label for="password">Password:</label>
-                <input type="password" name="password" minlength="8" maxlength="20" required>
+                <input type="password" name="password" clicked="false" pattern="^(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*.?+\-]).+$" minlength="8" maxlength="20">
                 <p class="msg"></p>
                 <ul class="additional-errors-container">
                     <li class="msg" id="capital-error">At least one capital letter</li>
                     <li class="msg" id="number-error">At least one number</li>
-                    <li class="msg" id="symbol-error">At least one symbol (!@#$%^&*.?<>/\)</li>
+                    <li class="msg" id="symbol-error">At least one symbol (!@#$%^&*.?+-)</li>
                     <li class="msg" id="length-error">8 to 20 characters</li>
                 </ul>
             </li>
             <li>
                 <label for="confirm-password">Confirm Password:</label>
-                <input type="password" name="confirm-password" required>
+                <input type="password" name="confirm-password">
                 <p class="msg"></p>
             </li>
         </ul>

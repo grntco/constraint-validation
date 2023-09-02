@@ -91,11 +91,11 @@ select {
     font-family: var(--font-family);
 }
 
-input:valid, select:valid {
+input:required:valid, select:required:valid {
     border-color: var(--valid-color);
 }
 
-input:invalid, select:invalid{
+input:required:invalid, select:required:invalid {
     border-color: var(--invalid-color);
 }
 

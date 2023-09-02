@@ -4,6 +4,15 @@ const country = document.querySelector('select[name="country"]');
 const zip = document.querySelector('input[name="zip"]');
 const password = document.querySelector('input[name="password"]');
 const passwordConfirm = document.querySelector('input[name="confirm-password"]');
+const allInputs = [email, country, zip, password, passwordConfirm];
+
+// allInputs.map(input => input.style.borderColor = 'var(--primary-border-color)')
+
+// This function makes the form inputs only invalid after a user leaves the input.
+// This fixes the inputs defaulting to invalid on page load, which gives them a red border due to the :invalid class.
+function setRequired(input) {
+    input.setAttribute('required', true);
+}
 
 // SHOW MESSAGES
 function showSuccessMsg(input, msgsContent) {
@@ -68,10 +77,10 @@ function checkPassword() {
         success: `That's a strong password.`
     }
 
-    password.pattern = "^(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*.\\/\\?<>]).+$";
+    // Regexes
     const capitalRegex = /[A-Z]/;
     const numRegex = /[0-9]/;
-    const symbolRegex = /[!@#$%^&*.<>?/\\]/;
+    const symbolRegex = /[!@#$%^&*.?]/;
 
     // Additional error messages
     const capitalError = document.getElementById('capital-error')
@@ -81,11 +90,10 @@ function checkPassword() {
     const additionalErrors = [ ...document.querySelector('.additional-errors-container').children]
 
     if (!password.validity.valid) {
-        console.log('Your password sucks.')
-        if (password.validity.valueMissing) {
+        if (password.validity.valueMissing && !password.clicked) { //Not the best code. Even though the password is clicked, this is false b/c password.clicked hasn't been set to true yet on blur
             passwordMsgs.error = 'Please enter a password.';
             additionalErrors.map(error => error.classList.remove('invalid'));
-        } else {
+        } else if (password.validity.patternMismatch) {
             if (!capitalRegex.test(password.value)) {
                 capitalError.classList.add('invalid');
             } else {
@@ -110,15 +118,18 @@ function checkPassword() {
         showErrorMsg(password, passwordMsgs)
     } else {
         additionalErrors.map(error => error.classList.remove('invalid'));
-        console.log('Looking good!');
         showSuccessMsg(password, passwordMsgs);
     }
 }
+// Something weird happened with this. Didn't check a first capital letter when I deleted everything...
+
+
 
 
 
 // EVENTS
 email.addEventListener('blur', () => {
+    setRequired(email);
     checkEmail();
     email.clicked = true;
 });
@@ -127,9 +138,15 @@ email.addEventListener('input', () => {
     if (email.clicked) checkEmail();
 });
 
-country.addEventListener('blur', checkCountry);
+country.addEventListener('blur', () => {
+    setRequired(country);
+    checkCountry();
+});
+
+// MAY NEED TO ADD CLICKED FOR COUNTRY
 
 zip.addEventListener('blur', () => { 
+    setRequired(zip)
     checkZip();
     zip.clicked = true;
 });
@@ -138,7 +155,13 @@ zip.addEventListener('input', () => {
     if (zip.clicked) checkZip(); 
 });
 
-password.addEventListener('input', () => {
+password.addEventListener('blur', () => {
+    setRequired(password);
     checkPassword();
-})
+    password.clicked = true;
+});
+
+password.addEventListener('input', () => {
+    if (password.clicked) checkPassword();
+});
 
